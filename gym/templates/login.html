@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>FartGym Admin – Login</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="logo-container">
+      <img src="{% static 'images/logo.jpg' %}" alt="FartGym Logo" class="logo">
+    </div>
+    <div class="auth-form">
+      <h2>Admin Login</h2>
+      {% if error %}<p class="error">{{ error }}</p>{% endif %}
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_email">Email</label>
+          <input type="email" name="email" id="id_email" required>
+        </div>
+        <div class="form-group">
+          <label for="id_password">Password</label>
+          <input type="password" name="password" id="id_password" required>
+        </div>
+        <button type="submit" class="btn-primary">Log In</button>
+      </form>
+      <p class="auth-link">
+        New admin? <a href="{% url 'register' %}">Register here</a>
+      </p>
+    </div>
+  </div>
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

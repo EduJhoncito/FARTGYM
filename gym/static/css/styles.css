@@ -1,0 +1,612 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Page Management */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Logo Styles */
+.logo {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.header-logo {
+    max-width: 120px;
+    height: auto;
+}
+
+/* Authentication Pages */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-form {
+    background-color: #1a1a1a;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #333;
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #00ff00;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #00ff00;
+    box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.1);
+}
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: #00ff00;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background-color: #00cc00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.3);
+}
+
+.btn-secondary {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #00ff00;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #00ff00;
+    color: #000000;
+}
+
+.btn-danger {
+    padding: 0.4rem 0.8rem;
+    background-color: #ff4444;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #cc0000;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #cccccc;
+}
+
+.auth-link a {
+    color: #00ff00;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.auth-link a:hover {
+    color: #00cc00;
+    text-decoration: underline;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    background-color: #1a1a1a;
+    border-bottom: 2px solid #00ff00;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#welcomeMessage {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #00ff00;
+}
+
+/* Dashboard Main */
+.dashboard-main {
+    padding: 2rem 0;
+}
+
+.dashboard-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Add Class Section */
+.add-class-section {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border: 1px solid #333;
+}
+
+.add-class-section h3 {
+    color: #00ff00;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.add-class-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr auto;
+    gap: 1rem;
+    align-items: end;
+}
+
+.add-class-form .btn-primary {
+    width: auto;
+    padding: 0.75rem 1.5rem;
+    white-space: nowrap;
+}
+
+/* Calendar Section */
+.calendar-section h3 {
+    color: #00ff00;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.calendar-container {
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #333;
+    overflow-x: auto;
+}
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.calendar th,
+.calendar td {
+    border: 1px solid #333;
+    padding: 0.75rem;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.calendar th {
+    background-color: #2a2a2a;
+    color: #00ff00;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.calendar td {
+    height: 60px;
+    background-color: #0a0a0a;
+    transition: background-color 0.3s ease;
+}
+
+.calendar td:hover {
+    background-color: #1a1a1a;
+}
+
+.calendar .time-cell {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Class Squares */
+.class-square {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    background-color: #00ff00;
+    color: #000000;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.class-square:hover {
+    background-color: #00cc00;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.4);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 5% auto;
+    padding: 0;
+    border: 2px solid #00ff00;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #333;
+    background-color: #2a2a2a;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-header h3 {
+    color: #00ff00;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.close {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.close:hover {
+    color: #00ff00;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+/* Add User Section */
+.add-user-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #333;
+}
+
+.add-user-section h4 {
+    color: #00ff00;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.add-user-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+}
+
+.add-user-form .btn-primary {
+    width: auto;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Enrolled Users Section */
+.enrolled-users-section h4 {
+    color: #00ff00;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.users-table-container {
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #333;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.users-table th {
+    background-color: #2a2a2a;
+    color: #00ff00;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.users-table td {
+    color: #ffffff;
+}
+
+.users-table tr:hover {
+    background-color: #1a1a1a;
+}
+
+.no-users {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .dashboard-content {
+        padding: 0 1rem;
+    }
+
+    .add-class-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .add-class-form .btn-primary {
+        width: 100%;
+    }
+
+    .add-user-form .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .add-user-form .btn-primary {
+        width: 100%;
+    }
+
+    .calendar-container {
+        padding: 1rem;
+    }
+
+    .calendar th,
+    .calendar td {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 2% auto;
+        max-height: 95vh;
+    }
+
+    .modal-header,
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .auth-container {
+        padding: 1rem;
+    }
+
+    .auth-form {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar {
+        min-width: 600px;
+    }
+    
+    .class-square {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .header-logo {
+        max-width: 80px;
+    }
+    
+    .logo {
+        max-width: 150px;
+    }
+}
+
+/* Animation for smooth transitions */
+.page {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page.active {
+    opacity: 1;
+}
+
+/* Success/Error Messages */
+.message {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.message.success {
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 1px solid #00ff00;
+    color: #00ff00;
+}
+
+.message.error {
+    background-color: rgba(255, 68, 68, 0.1);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+}
+
+.calendar {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.calendar th,
+.calendar td {
+  border: 1px solid #333;
+  height: 60px;          /* altura de cada hora */
+  vertical-align: top;
+  position: relative;     /* para posicionar el square dentro */
+}
+
+.class-square {
+  position: absolute;
+  top: 2px; left: 2px; right: 2px; bottom: 2px;
+  background-color: #0f0;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.calendar th,
+.calendar td {
+  border: 1px solid #333;
+  height: 60px; /* 1 hora */
+  position: relative;
+  vertical-align: top;
+}
+
+.class-square {
+  position: absolute;
+  top: 2px; bottom: 2px;
+  left: 2px; right: 2px;
+  background-color: #0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+}

@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>FartGym Admin – Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <img src="{% static 'images/logo.jpg' %}" alt="FartGym Logo" class="header-logo">
+      </div>
+      <div class="header-right">
+        <span>Welcome, {{ admin_name }}</span>
+        <a href="{% url 'logout' %}" class="btn-secondary">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <section class="add-class-section">
+      <h3>Add New Class</h3>
+      <form id="addClassForm" class="add-class-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="classDay">Day</label>
+            <select id="classDay" required>
+              <option value="">Select Day</option>
+              <option value="1">Monday</option>
+              <option value="2">Tuesday</option>
+              <option value="3">Wednesday</option>
+              <option value="4">Thursday</option>
+              <option value="5">Friday</option>
+              <option value="6">Saturday</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="classTime">Time</label>
+            <select id="classTime" required>
+                <option value="">Select Time</option>
+                <option value="06:00">6:00 AM</option>
+                <option value="07:00">7:00 AM</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="className">Class Name</label>
+            <input type="text" id="className" required placeholder="e.g., Yoga, HIIT, Cardio">
+          </div>
+          <button type="submit" class="btn-primary">Add Class</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="calendar-section">
+      <h3>Weekly Schedule</h3>
+      <div class="calendar-container">
+        <table class="calendar" id="calendar">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Mon</th><th>Tue</th><th>Wed</th>
+              <th>Thu</th><th>Fri</th><th>Sat</th>
+            </tr>
+          </thead>
+          <tbody id="calendarBody">
+            <!-- Generado por JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

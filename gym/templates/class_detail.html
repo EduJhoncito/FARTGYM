@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>FartGym – Class Details</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <img src="{% static 'images/logo.jpg' %}" alt="FartGym Logo" class="header-logo">
+      </div>
+      <div class="header-right">
+        <a href="{% url 'dashboard' %}" class="btn-secondary">Back</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="modal-body">
+    <h3>Class: {{ session.name }} ({{ session.get_day_display }} @ {{ session.time }})</h3>
+
+    <section class="add-user-section">
+      <h4>Add User to Class</h4>
+      <form id="addUserForm" class="add-user-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="userName">Name</label>
+            <input type="text" id="userName" required>
+          </div>
+          <div class="form-group">
+            <label for="userEmail">Email</label>
+            <input type="email" id="userEmail" required>
+          </div>
+          <button type="submit" class="btn-primary">Add User</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="enrolled-users-section">
+      <h4>Enrolled Users</h4>
+      <table class="users-table">
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Action</th></tr>
+        </thead>
+        <tbody id="enrolledUsers">
+          <!-- JS renderiza aquí -->
+        </tbody>
+      </table>
+      <div id="noUsersMessage" class="no-users">
+        No users enrolled in this class yet.
+      </div>
+    </section>
+  </main>
+
+  <script src="{% static 'js/app.js' %}"></script>
+  <script>
+        (() => {
+        // Obtiene el session_id de la URL: /class-detail/<id>/
+        const parts = window.location.pathname.split('/').filter(Boolean);
+        const sessionId = parts[parts.length - 1];
+
+        const enrollmentsTbody = document.getElementById('enrolledUsers');
+        const noUsersMessage   = document.getElementById('noUsersMessage');
+        const addUserForm      = document.getElementById('addUserForm');
+
+        // Leer cookie CSRF
+        function getCookie(name) {
+            return document.cookie.split(';').map(c=>c.trim())
+            .find(c=>c.startsWith(name+'='))?.split('=')[1] || '';
+        }
+
+        // Dibuja las filas en la tabla
+        function renderEnrollments(enrollments) {
+            enrollmentsTbody.innerHTML = '';
+            if (enrollments.length === 0) {
+            noUsersMessage.style.display = 'block';
+            return;
+            }
+            noUsersMessage.style.display = 'none';
+
+            enrollments.forEach(e => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${e.name}</td>
+                <td>${e.email}</td>
+                <td>
+                <button class="btn-danger btn-sm delete-btn">Delete</button>
+                </td>`;
+            // handler para delete
+            tr.querySelector('.delete-btn').addEventListener('click', () => {
+                fetch(`/api/sessions/${sessionId}/enrollments/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ id: e.id })
+                })
+                .then(r => r.json())
+                .then(() => loadEnrollments())
+                .catch(console.error);
+            });
+            enrollmentsTbody.appendChild(tr);
+            });
+        }
+
+        // Llama al API para traer todas
+        function loadEnrollments() {
+            fetch(`/api/sessions/${sessionId}/enrollments/?`, {
+            headers: { 'Accept': 'application/json' }
+            })
+            .then(r => r.json())
+            .then(data => renderEnrollments(data.enrollments))
+            .catch(console.error);
+        }
+
+        // Handler del form “Add User”
+        addUserForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const name  = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            if (!name || !email) return;
+
+            fetch(`/api/sessions/${sessionId}/enrollments/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({ name, email })
+            })
+            .then(r => r.json())
+            .then(() => {
+            addUserForm.reset();
+            loadEnrollments();
+            })
+            .catch(console.error);
+        });
+
+        // Arranque: pide la lista
+        document.addEventListener('DOMContentLoaded', loadEnrollments);
+        })();
+    </script>
+</body>
+</html>
